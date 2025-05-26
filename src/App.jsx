@@ -10,11 +10,17 @@ export default function BillApp() {
     //   electricity: { kwh: 149.3, rate: 11.5, beforeImg: "/before-electric-march.jpg", afterImg: "/after-electric-march.jpg" },
     //   water: { cuM: 8.5, rate: 22.105, beforeImg: "/before-water-march.jpg", afterImg: "/after-water-march.jpg" }
     // },
+    // {
+    //   month: "April",
+    //   year: 2025,
+    //   electricity: { kwh: 171.2, rate: 12, beforeImg: "/after-electric-march.jpg", afterImg: "/after-electric-april.jpeg" },
+    //   water: { cuM: 8.5, rate: 22.65, beforeImg: "/after-water-march.jpg", afterImg: "/after-water-april.jpeg" }
+    // },
     {
-      month: "April",
+      month: "May",
       year: 2025,
-      electricity: { kwh: 171.2, rate: 12, beforeImg: "/after-electric-march.jpg", afterImg: "/after-electric-april.jpeg" },
-      water: { cuM: 8.5, rate: 22.65, beforeImg: "/after-water-march.jpg", afterImg: "/after-water-april.jpeg" }
+      electricity: { kwh: 163.7, rate: 12, beforeImg: "/after-electric-april.jpg", afterImg: "/after-electric-may.jpg" },
+      water: { cuM: 8, rate: 22.77, beforeImg: "/after-water-april.jpeg", afterImg: "/after-water-may.jpg" }
     },
   
   ];
