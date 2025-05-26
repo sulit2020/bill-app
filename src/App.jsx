@@ -19,7 +19,7 @@ export default function BillApp() {
     {
       month: "May",
       year: 2025,
-      electricity: { kwh: 163.7, rate: 12, beforeImg: "/after-electric-april.jpg", afterImg: "/after-electric-may.jpg" },
+      electricity: { kwh: 163.7, rate: 12, beforeImg: "/after-electric-april.jpeg", afterImg: "/after-electric-may.jpg" },
       water: { cuM: 8, rate: 22.77, beforeImg: "/after-water-april.jpeg", afterImg: "/after-water-may.jpg" }
     },
   
