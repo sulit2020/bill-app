@@ -16,11 +16,18 @@ export default function BillApp() {
     //   electricity: { kwh: 171.2, rate: 12, beforeImg: "/after-electric-march.jpg", afterImg: "/after-electric-april.jpeg" },
     //   water: { cuM: 8.5, rate: 22.65, beforeImg: "/after-water-march.jpg", afterImg: "/after-water-april.jpeg" }
     // },
+    // {
+    //   month: "May",
+    //   year: 2025,
+    //   electricity: { kwh: 163.7, rate: 12, beforeImg: "/after-electric-april.jpeg", afterImg: "/after-electric-may.jpg" },
+    //   water: { cuM: 8, rate: 22.77, beforeImg: "/after-water-april.jpeg", afterImg: "/after-water-may.jpg" }
+    // },
     {
-      month: "May",
+      month: "June",
       year: 2025,
-      electricity: { kwh: 163.7, rate: 12, beforeImg: "/after-electric-april.jpeg", afterImg: "/after-electric-may.jpg" },
-      water: { cuM: 8, rate: 22.77, beforeImg: "/after-water-april.jpeg", afterImg: "/after-water-may.jpg" }
+      electricity: { kwh: 178.6, rate: 11.5, beforeImg: "/after-electric-may.jpg", afterImg: "/after-electric-june.jpg" },
+      water: { cuM: 7.5, rate: 22.336, beforeImg: "/after-water-may.jpg", afterImg: "/after-water-june.jpg" },
+      internet: { cost: 198, period: "June 7-June 24"}
     },
   
   ];
@@ -62,7 +69,8 @@ export default function BillApp() {
       {bills.map((bill, index) => {
         const electricBill = bill.electricity.kwh * bill.electricity.rate;
         const waterBill = bill.water.cuM * bill.water.rate;
-        const totalBill = electricBill + waterBill;
+        const internetBill = bill.internet?.cost || 0;
+        const totalBill = electricBill + waterBill + internetBill;
 
         return (
           <div key={index} className="card shadow-sm rounded-4 mb-4" style={{ border: "none" }}>
@@ -84,11 +92,15 @@ export default function BillApp() {
                 </div>
               </section>
 
-              <section className="mb-4 text-center">
-                <h5 className="text-secondary">Water Bill</h5>
+              <section className="mb-4 text-center position-relative">
+              
+                <h5 className="text-secondary mt-4">Water Bill</h5>
                 <img src="/mcwd-logo.jpeg" alt="MCWD Logo" className="mb-2" style={{ width: "100px" }} />
                 <p className="text-danger fs-3"><strong>Consumed:</strong> {bill.water.cuM} cu.m</p>
                 <p className="text-success fs-3"><strong>Cost:</strong> ₱{waterBill.toFixed(2)}</p>
+                  <div className="position-absolute top-0 start-0 w-100" style={{zIndex:2}}>
+                  <marquee behavior="scroll" direction="left" className="bg-danger text-white py-1 fw-bold rounded-2 shadow-sm" style={{fontSize:'1.1rem'}}>Warning: Low water pressure ! Fetching time : 3am - 5am  💧</marquee>
+                </div>
                 <div className="mb-2">
                   <p className="fw-semibold mb-1">Before Reading</p>
                   <img src={bill.water.beforeImg} className="img-fluid rounded shadow-sm" />
@@ -97,6 +109,12 @@ export default function BillApp() {
                   <p className="fw-semibold mb-1">After Reading</p>
                   <img src={bill.water.afterImg} className="img-fluid rounded shadow-sm" />
                 </div>
+              </section>
+
+              <section className="mb-4 text-center">
+                <h5 className="text-secondary">Internet Bill</h5>
+                <p className="text-info fs-3"><strong>Period Covered:</strong> {bill.internet.period}</p>
+                <p className="text-success fs-3"><strong>Cost:</strong> ₱{internetBill.toLocaleString()}</p>
               </section>
 
               <h5 className="text-success fw-bold text-center">Total Bill: ₱{totalBill.toFixed(2)}</h5>
