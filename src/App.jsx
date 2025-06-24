@@ -99,7 +99,7 @@ export default function BillApp() {
                 <p className="text-danger fs-3"><strong>Consumed:</strong> {bill.water.cuM} cu.m</p>
                 <p className="text-success fs-3"><strong>Cost:</strong> ₱{waterBill.toFixed(2)}</p>
                   <div className="position-absolute top-0 start-0 w-100" style={{zIndex:2}}>
-                  <marquee behavior="scroll" direction="left" className="bg-danger text-white py-1 fw-bold rounded-2 shadow-sm" style={{fontSize:'1.1rem'}}>Warning:Water pressure is low ! Please have a spare time to Fetch around : 3am - 5am  💧</marquee>
+                  <marquee behavior="scroll" direction="left" className="bg-danger text-white py-1 fw-bold rounded-2 shadow-sm" style={{fontSize:'1.1rem'}}>Warning: Water pressure is low ! Please have a spare time to Fetch around : 3am - 5am  💧</marquee>
                 </div>
                 <div className="mb-2">
                   <p className="fw-semibold mb-1">Before Reading</p>
