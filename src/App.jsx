@@ -22,22 +22,24 @@ export default function BillApp() {
     //   electricity: { kwh: 163.7, rate: 12, beforeImg: "/after-electric-april.jpeg", afterImg: "/after-electric-may.jpg" },
     //   water: { cuM: 8, rate: 22.77, beforeImg: "/after-water-april.jpeg", afterImg: "/after-water-may.jpg" }
     // },
+    // {
+    //   month: "June",
+    //   year: 2025,
+    //   electricity: { kwh: 178.6, rate: 11.5, beforeImg: "/after-electric-may.jpg", afterImg: "/after-electric-june.jpg" },
+    //   water: { cuM: 7.5, rate: 22.336, beforeImg: "/after-water-may.jpg", afterImg: "/after-water-june.jpg" },
+    //   internet: { cost: 198, period: "June 7-June 24"}
+    // },
     {
-      month: "June",
+      month: "July",
       year: 2025,
-      electricity: { kwh: 178.6, rate: 11.5, beforeImg: "/after-electric-may.jpg", afterImg: "/after-electric-june.jpg" },
-      water: { cuM: 7.5, rate: 22.336, beforeImg: "/after-water-may.jpg", afterImg: "/after-water-june.jpg" },
-      internet: { cost: 198, period: "June 7-June 24"}
+      electricity: { kwh: 156.5, rate: 11.5, beforeImg: "/after-electric-june.jpg", afterImg: "/after-electric-july.jpg" },
+      water: { cuM: 9, rate: 23.04, beforeImg: "/after-water-june.jpg", afterImg: "/after-water-july.jpg" },
+      internet: { cost: 350}
     },
   
   ];
 
   const payDetails = [
-    {
-      name:"Abraham Sulit",
-      accNum: "09916507492" ,
-      bank: "Maya (E-wallet)",
-    },
     {
       name:"Abraham Sulit",
       accNum: "1479138563" ,
@@ -99,7 +101,6 @@ export default function BillApp() {
                 <p className="text-danger fs-3"><strong>Consumed:</strong> {bill.water.cuM} cu.m</p>
                 <p className="text-success fs-3"><strong>Cost:</strong> ₱{waterBill.toFixed(2)}</p>
                   <div className="position-absolute top-0 start-0 w-100" style={{zIndex:2}}>
-                  <marquee behavior="scroll" direction="left" className="bg-danger text-white py-1 fw-bold rounded-2 shadow-sm" style={{fontSize:'1.1rem'}}>Warning: Water pressure is low ! Please have a spare time to Fetch around : 3am - 5am  💧</marquee>
                 </div>
                 <div className="mb-2">
                   <p className="fw-semibold mb-1">Before Reading</p>
@@ -113,7 +114,7 @@ export default function BillApp() {
 
               <section className="mb-4 text-center">
                 <h5 className="text-secondary">Internet Bill</h5>
-                <p className="text-info fs-3"><strong>Period Covered:</strong> {bill.internet.period}</p>
+    
                 <p className="text-success fs-3"><strong>Cost:</strong> ₱{internetBill.toLocaleString()}</p>
               </section>
 
