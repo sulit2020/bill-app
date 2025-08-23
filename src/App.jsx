@@ -29,11 +29,18 @@ export default function BillApp() {
     //   water: { cuM: 7.5, rate: 22.336, beforeImg: "/after-water-may.jpg", afterImg: "/after-water-june.jpg" },
     //   internet: { cost: 198, period: "June 7-June 24"}
     // },
-    {
-      month: "July",
+    // {
+    //   month: "July",
+    //   year: 2025,
+    //   electricity: { kwh: 156.5, rate: 11.5, beforeImg: "/after-electric-june.jpg", afterImg: "/after-electric-july.jpg" },
+    //   water: { cuM: 9, rate: 23.04, beforeImg: "/after-water-june.jpg", afterImg: "/after-water-july.jpg" },
+    //   internet: { cost: 350}
+    // },
+      {
+      month: "August",
       year: 2025,
-      electricity: { kwh: 156.5, rate: 11.5, beforeImg: "/after-electric-june.jpg", afterImg: "/after-electric-july.jpg" },
-      water: { cuM: 9, rate: 23.04, beforeImg: "/after-water-june.jpg", afterImg: "/after-water-july.jpg" },
+      electricity: { kwh: 158.1, rate: 12, beforeImg: "/after-electric-july.jpg", afterImg: "/after-electric-august.webp" },
+      water: { cuM: 8, rate: 22.6, beforeImg: "/after-water-july.jpg", afterImg: "/after-water-august.webp" },
       internet: { cost: 350}
     },
   
