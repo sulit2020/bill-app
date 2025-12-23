@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { useState } from "react";
+import "./BillApp.css";
 
 export default function BillApp() {
   // const [copiedText, setCopiedText] = useState("");
@@ -93,159 +93,94 @@ export default function BillApp() {
     },
   ];
 
-  // const payDetails = [
-  //   {
-  //     name:"Abraham Sulit",
-  //     accNum: "1479138563" ,
-  //     bank: "BPI",
-  //   },
-  //   {
-  //     name:"Abraham Sulit",
-  //     accNum: "9045028068" ,
-  //     bank: "RCBC",
-  //   },
-  //   {
-  //     name:"Abraham Sulit",
-  //     accNum: "0413797980251" ,
-  //     bank: "Metrobank",
-  //   },
-
-  // ]
-
-  // const handleCopy = (text) => {
-  //   navigator.clipboard.writeText(text);
-  //   setCopiedText(text);
-  //   setTimeout(() => setCopiedText(""), 2000);
-  // };
+    const fmt = (v) =>
+    v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
   return (
-    <div className="container py-4 px-2">
-      <h1 className="text-center mb-4 text-white fw-bold">Bill Summary</h1>
+    <div className="bill-app container-mobile">
+      <header className="app-header">
+        <h1 className="app-title">Bill Summary</h1>
+      </header>
 
-      {bills.map((bill, index) => {
-        const electricBill = bill.electricity.kwh * bill.electricity.rate;
-        const waterBill = bill.water.cuM * bill.water.rate;
-        const internetBill = bill.internet?.cost || 0;
-        const totalBill = electricBill + waterBill + internetBill;
+      <main>
+        {bills.map((bill, i) => {
+          const electricBill = bill.electricity.kwh * bill.electricity.rate;
+          const waterBill = bill.water.cuM * bill.water.rate;
+          const internetBill = bill.internet?.cost || 0;
+          const total = electricBill + waterBill + internetBill;
 
-        return (
-          <div
-            key={index}
-            className="card shadow-sm rounded-4 mb-4"
-            style={{ border: "none" }}
-          >
-            <div className="card-body p-4">
-              <h1 className="text-center mb-3">
-                {bill.month} {bill.year}
-              </h1>
-
-              <section className="mb-4 text-center">
-                <h5 className="text-secondary">Electricity Bill</h5>
-                <img
-                  src="/veco-logo.jpeg"
-                  alt="Veco Logo"
-                  className="mb-2 mx-auto"
-                  style={{ width: "80px" }}
-                />
-                <p className="text-danger fs-3">
-                  <strong>Consumed:</strong> {bill.electricity.kwh} kWh
-                </p>
-                <p className="text-success fs-3 text-center">
-                  <strong>Cost:</strong> ₱{electricBill.toFixed(2)}
-                </p>
-                <div className="mb-2">
-                  <p className="fw-semibold mb-1">Before Reading</p>
-                  <img
-                    src={bill.electricity.beforeImg}
-                    className="img-fluid rounded shadow-sm"
-                  />
-                </div>
-                <div>
-                  <p className="fw-semibold mb-1">After Reading</p>
-                  <img
-                    src={bill.electricity.afterImg}
-                    className="img-fluid rounded shadow-sm"
-                  />
-                </div>
-              </section>
-
-              <section className="mb-4 text-center position-relative">
-                <h5 className="text-secondary mt-4">Water Bill</h5>
-                <img
-                  src="/mcwd-logo.jpeg"
-                  alt="MCWD Logo"
-                  className="mb-2"
-                  style={{ width: "100px" }}
-                />
-                <p className="text-danger fs-3">
-                  <strong>Consumed:</strong> {bill.water.cuM} cu.m
-                </p>
-                <p className="text-success fs-3">
-                  <strong>Cost:</strong> ₱{waterBill.toFixed(2)}
-                </p>
-                <div
-                  className="position-absolute top-0 start-0 w-100"
-                  style={{ zIndex: 2 }}
-                ></div>
-                <div className="mb-2">
-                  <p className="fw-semibold mb-1">Before Reading</p>
-                  <img
-                    src={bill.water.beforeImg}
-                    className="img-fluid rounded shadow-sm"
-                  />
-                </div>
-                <div>
-                  <p className="fw-semibold mb-1">After Reading</p>
-                  <img
-                    src={bill.water.afterImg}
-                    className="img-fluid rounded shadow-sm"
-                  />
-                </div>
-              </section>
-
-              <section className="mb-4 text-center">
-                <h5 className="text-secondary">Internet Bill</h5>
-
-                <p className="text-success fs-3">
-                  <strong>Cost:</strong> ₱{internetBill.toLocaleString()}
-                </p>
-              </section>
-
-              <h5 className="text-success fw-bold text-center">
-                Total Bill: ₱{totalBill.toFixed(2)}
-              </h5>
-
-              <hr />
-              {/* <p className="text-danger fst-italic text-center mt-3">
-                For your convenience, you may settle your bill via bank transfer or e-wallet.
-              </p>
-
-              <h6 className="text-primary mt-4">Payment Details</h6>
-              {payDetails.map((detail, idx) => (
-                <div key={idx} className="bg-light p-3 rounded-3 mb-3">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <p className="mb-1"><strong>Name:</strong> {detail.name}</p>
-                    <button className="btn btn-sm btn-outline-primary" onClick={() => handleCopy(detail.name)}>Copy</button>
+          return (
+            <article className="bill-card" key={i}>
+              <details className="bill-details" role="group">
+                <summary className="bill-summary">
+                  <div className="summary-left">
+                    <div className="month">{bill.month} {bill.year}</div>
+                    <div className="hint">Tap to view details</div>
                   </div>
-                  <div className="d-flex justify-content-between align-items-center">
-                    <p className="mb-1"><strong>Account #:</strong> {detail.accNum}</p>
-                    <button className="btn btn-sm btn-outline-primary" onClick={() => handleCopy(detail.accNum)}>Copy</button>
+                  <div className="summary-right d-flex">
+                    <div className="label">Total</div>
+                    <div className="amount text-white ps-2">₱{fmt(total)}</div>
                   </div>
-                  <p className="mb-0"><strong>Bank:</strong> {detail.bank}</p>
-                </div>
-              ))}
+                </summary>
 
-              <p className="text-center text-danger">Note: After payment, kindly send a screenshot. Thank you.</p>
+                <div className="bill-body">
+                  <section className="service">
+                    <div className="service-head">
+                      <img src="/veco-logo.jpeg" alt="Veco" className="logo" loading="lazy" />
+                      <h4>Electricity</h4>
+                    </div>
+                    <p className="meta text-white"><strong>Consumed:</strong> {bill.electricity.kwh} kWh</p>
+                    <p className="cost text-white"><strong>Cost:</strong> ₱{fmt(electricBill)}</p>
 
-              {copiedText && (
-                <div className="text-success text-center mt-2 small">
-                  <em>Copied "{copiedText}" to clipboard!</em>
+                    <div className="images">
+                      <figure>
+                        <figcaption>Before</figcaption>
+                        <img src={bill.electricity.beforeImg} alt="electric before" loading="lazy" />
+                      </figure>
+                      <figure>
+                        <figcaption>After</figcaption>
+                        <img src={bill.electricity.afterImg} alt="electric after" loading="lazy" />
+                      </figure>
+                    </div>
+                  </section>
+
+                  <section className="service">
+                    <div className="service-head">
+                      <img src="/mcwd-logo.jpeg" alt="MCWD" className="logo" loading="lazy" />
+                      <h4>Water</h4>
+                    </div>
+                    <p className="meta text-white"><strong>Consumed:</strong> {bill.water.cuM} cu.m</p>
+                    <p className="cost text-white"><strong>Cost:</strong> ₱{fmt(waterBill)}</p>
+
+                    <div className="images">
+                      <figure>
+                        <figcaption>Before</figcaption>
+                        <img src={bill.water.beforeImg} alt="water before" loading="lazy" />
+                      </figure>
+                      <figure>
+                        <figcaption>After</figcaption>
+                        <img src={bill.water.afterImg} alt="water after" loading="lazy" />
+                      </figure>
+                    </div>
+                  </section>
+
+                  <section className="service last">
+                    <h4>Internet</h4>
+                    <p className="cost text-white"><strong>Cost:</strong> ₱{fmt(internetBill)}</p>
+                  </section>
+
+                  <div className="total-row">
+                    <div>Total</div>
+                    <div className="amount total text-white">₱{fmt(total)}</div>
+                  </div>
                 </div>
-              )} */}
-            </div>
-          </div>
-        );
-      })}
+              </details>
+            </article>
+          );
+        })}
+      </main>
     </div>
   );
 }
+
+

@@ -83,3 +83,54 @@ body{
   #root {
   width: 100%;
   }
+
+  /* Mobile-first compact styles */
+.mobile-container { padding-left: 0.6rem; padding-right: 0.6rem; }
+.app-title { font-size: 1.15rem; margin-bottom: 0.5rem; }
+
+/* Card / details */
+.mobile-card { border-radius: 12px; }
+.bill-details { width: 100%; }
+.bill-summary {
+  cursor: pointer;
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.02);
+  gap: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bill-summary .month-year { font-size: 1rem; }
+.bill-summary .total-amount { font-size: 1rem; color: #0d6efd; }
+
+/* hide default marker and use custom caret */
+.bill-summary::-webkit-details-marker { display: none; }
+.bill-summary::after {
+  content: "▾";
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-left: 8px;
+}
+.bill-details[open] .bill-summary::after { content: "▴"; }
+
+/* Images */
+.bill-img { width: 100%; max-height: 220px; object-fit: cover; display:block; margin: 0.35rem 0; }
+.logo-sm { width: 56px; height: auto; display:block; margin: 0.3rem auto; }
+
+/* typography adjustments */
+.small { font-size: 0.85rem; }
+.fs-3 { font-size: 1rem !important; }
+
+/* ensure details content is hidden until expanded on mobile */
+.bill-content { padding-top: 0.6rem; }
+
+/* Larger screens: expand details and show full layout */
+@media (min-width: 601px) {
+  .app-title { font-size: 1.5rem; }
+  /* force content visible (acts like expanded card) */
+  .bill-summary { display: none; }
+  .bill-content { display: block !important; }
+  .bill-img { max-height: 360px; }
+  .card-body { padding: 1.5rem !important; }
+}

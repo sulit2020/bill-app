@@ -1,0 +1,96 @@
+/* Mobile-first styles for BillApp component */
+
+:root{
+  --bg: #0b1220;
+  --card: rgba(255,255,255,0.03);
+  --muted: #9aa4b2;
+  --accent: #0d6efd;
+  --success: #198754;
+  --danger: #dc3545;
+  --radius: 12px;
+}
+
+body { background: var(--bg); color: #fff; }
+
+.container-mobile {
+  padding: 14px 12px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.app-header { text-align: center; margin-bottom: 8px; }
+.app-title { font-size: 1.15rem; font-weight: 700; margin: 6px 0; }
+
+/* Card */
+.bill-card {
+  background: transparent;
+  margin-bottom: 12px;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+  overflow: hidden;
+}
+
+/* Collapsible summary */
+.bill-details { width: 100%; }
+.bill-summary{
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  cursor: pointer;
+}
+.bill-summary .month { font-weight: 600; font-size: 1rem; }
+.bill-summary .hint { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+.summary-right .label { font-size: 0.75rem; color: var(--muted); text-align:right; }
+.summary-right .amount { font-weight:700; color: var(--accent); }
+
+/* hide default marker, add caret */
+.bill-summary::-webkit-details-marker { display: none; }
+.bill-summary::after { content: "▾"; margin-left:-100px; opacity:0.75; }
+.bill-details[open] .bill-summary::after { content: "▴"; }
+
+/* Expanded content */
+.bill-body {
+  padding: 12px;
+  background: var(--card);
+  border-top: 1px solid rgba(255,255,255,0.02);
+}
+
+/* Service section */
+.service { margin-bottom: 12px; text-align: left; }
+.service-head { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.logo { width:44px; height:auto; border-radius:6px; object-fit:cover; }
+.service h4 { margin:0; font-size:0.95rem; color:#dbe6ff; }
+.meta { color: var(--danger); margin:4px 0; font-size:0.92rem; }
+.cost { color: var(--success); margin:0 0 8px 0; font-weight:600; }
+
+/* images */
+.images { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.images img { width:100%; height:140px; object-fit:cover; border-radius:8px; display:block; }
+
+/* total row */
+.total-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:8px;
+  border-top:1px dashed rgba(255,255,255,0.03);
+  margin-top:8px;
+}
+.total-row .total { color: var(--accent); font-weight:800; }
+
+/* small screens tweaks */
+@media (max-width:420px){
+  .images img { height:120px; }
+  .logo { width:40px; }
+  .bill-summary { padding:10px; }
+}
+
+/* larger screens: show details expanded and grid layout */
+@media (min-width: 720px){
+  .bill-summary { display:none; }
+  .bill-body { display:block !important; }
+  .container-mobile { padding: 20px; }
+  .images { grid-template-columns: 1fr 1fr; }
+  .images img { height:220px; }
+}
