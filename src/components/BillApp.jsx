@@ -49,7 +49,7 @@ export default function BillApp() {
     //   electricity: { kwh: 163.4, rate: 13, beforeImg: "/after-electric-august.webp", afterImg: "/after-electric-september.jpg" },
     //   water: { cuM: 8.5, rate: 24.1, beforeImg: "/after-water-august.webp", afterImg: "/after-water-september.jpg" },
     //   internet: { cost: 350}
-    // },     
+    // },
     // {
     //   month: "October",
     //   year: 2025,
@@ -57,14 +57,40 @@ export default function BillApp() {
     //   water: { cuM: 7.5, rate: 26.85, beforeImg: "/after-water-september.jpg", afterImg: "/after-water-october.jpg" },
     //   internet: { cost: 350}
     // },
-       {
-      month: "November",
+    // {
+    //   month: "November",
+    //   year: 2025,
+    //   electricity: {
+    //     kwh: 169,
+    //     rate: 12.5,
+    //     beforeImg: "/after-electric-october.jpg",
+    //     afterImg: "/after-electric-november.jpg",
+    //   },
+    //   water: {
+    //     cuM: 8.5,
+    //     rate: 25.38,
+    //     beforeImg: "/after-water-october.jpg",
+    //     afterImg: "/after-water-november.jpg",
+    //   },
+    //   internet: { cost: 350 },
+    // },
+    {
+      month: "December",
       year: 2025,
-      electricity: { kwh: 169, rate: 12.5, beforeImg: "/after-electric-october.jpg", afterImg: "/after-electric-november.jpg" },
-      water: { cuM: 8.5, rate: 25.38, beforeImg: "/after-water-october.jpg", afterImg: "/after-water-november.jpg" },
-      internet: { cost: 350}
+      electricity: {
+        kwh: 149.6,
+        rate: 13,
+        beforeImg: "/after-electric-november.jpg",
+        afterImg: "/after-electric-december.jpg",
+      },
+      water: {
+        cuM: 8.5,
+        rate: 25.1,
+        beforeImg: "/after-water-november.jpg",
+        afterImg: "/after-water-december.jpg",
+      },
+      internet: { cost: 350 },
     },
-  
   ];
 
   // const payDetails = [
@@ -103,50 +129,91 @@ export default function BillApp() {
         const totalBill = electricBill + waterBill + internetBill;
 
         return (
-          <div key={index} className="card shadow-sm rounded-4 mb-4" style={{ border: "none" }}>
+          <div
+            key={index}
+            className="card shadow-sm rounded-4 mb-4"
+            style={{ border: "none" }}
+          >
             <div className="card-body p-4">
-              <h1 className="text-center mb-3">{bill.month} {bill.year}</h1>
+              <h1 className="text-center mb-3">
+                {bill.month} {bill.year}
+              </h1>
 
               <section className="mb-4 text-center">
                 <h5 className="text-secondary">Electricity Bill</h5>
-                <img src="/veco-logo.jpeg" alt="Veco Logo" className="mb-2 mx-auto" style={{ width: "80px" }} />
-                <p className="text-danger fs-3"><strong>Consumed:</strong> {bill.electricity.kwh} kWh</p>
-                <p className="text-success fs-3 text-center"><strong>Cost:</strong> ₱{electricBill.toFixed(2)}</p>
+                <img
+                  src="/veco-logo.jpeg"
+                  alt="Veco Logo"
+                  className="mb-2 mx-auto"
+                  style={{ width: "80px" }}
+                />
+                <p className="text-danger fs-3">
+                  <strong>Consumed:</strong> {bill.electricity.kwh} kWh
+                </p>
+                <p className="text-success fs-3 text-center">
+                  <strong>Cost:</strong> ₱{electricBill.toFixed(2)}
+                </p>
                 <div className="mb-2">
                   <p className="fw-semibold mb-1">Before Reading</p>
-                  <img src={bill.electricity.beforeImg} className="img-fluid rounded shadow-sm" />
+                  <img
+                    src={bill.electricity.beforeImg}
+                    className="img-fluid rounded shadow-sm"
+                  />
                 </div>
                 <div>
                   <p className="fw-semibold mb-1">After Reading</p>
-                  <img src={bill.electricity.afterImg} className="img-fluid rounded shadow-sm" />
+                  <img
+                    src={bill.electricity.afterImg}
+                    className="img-fluid rounded shadow-sm"
+                  />
                 </div>
               </section>
 
               <section className="mb-4 text-center position-relative">
-              
                 <h5 className="text-secondary mt-4">Water Bill</h5>
-                <img src="/mcwd-logo.jpeg" alt="MCWD Logo" className="mb-2" style={{ width: "100px" }} />
-                <p className="text-danger fs-3"><strong>Consumed:</strong> {bill.water.cuM} cu.m</p>
-                <p className="text-success fs-3"><strong>Cost:</strong> ₱{waterBill.toFixed(2)}</p>
-                  <div className="position-absolute top-0 start-0 w-100" style={{zIndex:2}}>
-                </div>
+                <img
+                  src="/mcwd-logo.jpeg"
+                  alt="MCWD Logo"
+                  className="mb-2"
+                  style={{ width: "100px" }}
+                />
+                <p className="text-danger fs-3">
+                  <strong>Consumed:</strong> {bill.water.cuM} cu.m
+                </p>
+                <p className="text-success fs-3">
+                  <strong>Cost:</strong> ₱{waterBill.toFixed(2)}
+                </p>
+                <div
+                  className="position-absolute top-0 start-0 w-100"
+                  style={{ zIndex: 2 }}
+                ></div>
                 <div className="mb-2">
                   <p className="fw-semibold mb-1">Before Reading</p>
-                  <img src={bill.water.beforeImg} className="img-fluid rounded shadow-sm" />
+                  <img
+                    src={bill.water.beforeImg}
+                    className="img-fluid rounded shadow-sm"
+                  />
                 </div>
                 <div>
                   <p className="fw-semibold mb-1">After Reading</p>
-                  <img src={bill.water.afterImg} className="img-fluid rounded shadow-sm" />
+                  <img
+                    src={bill.water.afterImg}
+                    className="img-fluid rounded shadow-sm"
+                  />
                 </div>
               </section>
 
               <section className="mb-4 text-center">
                 <h5 className="text-secondary">Internet Bill</h5>
-    
-                <p className="text-success fs-3"><strong>Cost:</strong> ₱{internetBill.toLocaleString()}</p>
+
+                <p className="text-success fs-3">
+                  <strong>Cost:</strong> ₱{internetBill.toLocaleString()}
+                </p>
               </section>
 
-              <h5 className="text-success fw-bold text-center">Total Bill: ₱{totalBill.toFixed(2)}</h5>
+              <h5 className="text-success fw-bold text-center">
+                Total Bill: ₱{totalBill.toFixed(2)}
+              </h5>
 
               <hr />
               {/* <p className="text-danger fst-italic text-center mt-3">
