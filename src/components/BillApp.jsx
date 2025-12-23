@@ -84,7 +84,7 @@ export default function BillApp() {
         afterImg: "/after-electric-december.jpg",
       },
       water: {
-        cuM: 8.5,
+        cuM: 7.5,
         rate: 25.1,
         beforeImg: "/after-water-november.jpg",
         afterImg: "/after-water-december.jpg",
