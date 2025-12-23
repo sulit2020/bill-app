@@ -1,7 +1,23 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from "react";
 import "./BillApp.css";
 
 export default function BillApp() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 720px)");
+    const onChange = (e) => setIsDesktop(e.matches);
+    setIsDesktop(mq.matches);
+
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else mq.addListener(onChange);
+
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", onChange);
+      else mq.removeListener(onChange);
+    };
+  }, []);
   // const [copiedText, setCopiedText] = useState("");
   const bills = [
     // {
@@ -93,8 +109,11 @@ export default function BillApp() {
     },
   ];
 
-    const fmt = (v) =>
-    v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmt = (v) =>
+    v.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
   return (
     <div className="bill-app container-mobile">
@@ -111,10 +130,13 @@ export default function BillApp() {
 
           return (
             <article className="bill-card" key={i}>
-              <details className="bill-details" role="group">
+              {/* open on desktop, collapsible on mobile */}
+              <details className="bill-details" role="group" open={isDesktop}>
                 <summary className="bill-summary">
                   <div className="summary-left">
-                    <div className="month">{bill.month} {bill.year}</div>
+                    <div className="month">
+                      {bill.month} {bill.year}
+                    </div>
                     <div className="hint">Tap to view details</div>
                   </div>
                   <div className="summary-right d-flex">
@@ -126,47 +148,83 @@ export default function BillApp() {
                 <div className="bill-body">
                   <section className="service">
                     <div className="service-head">
-                      <img src="/veco-logo.jpeg" alt="Veco" className="logo" loading="lazy" />
+                      <img
+                        src="/veco-logo.jpeg"
+                        alt="Veco"
+                        className="logo"
+                        loading="lazy"
+                      />
                       <h4>Electricity</h4>
                     </div>
-                    <p className="meta text-white"><strong>Consumed:</strong> {bill.electricity.kwh} kWh</p>
-                    <p className="cost text-white"><strong>Cost:</strong> ₱{fmt(electricBill)}</p>
+                    <p className="meta text-white">
+                      <strong>Consumed:</strong> {bill.electricity.kwh} kWh
+                    </p>
+                    <p className="cost text-white">
+                      <strong>Cost:</strong> ₱{fmt(electricBill)}
+                    </p>
 
                     <div className="images">
                       <figure>
                         <figcaption>Before</figcaption>
-                        <img src={bill.electricity.beforeImg} alt="electric before" loading="lazy" />
+                        <img
+                          src={bill.electricity.beforeImg}
+                          alt="electric before"
+                          loading="lazy"
+                        />
                       </figure>
                       <figure>
                         <figcaption>After</figcaption>
-                        <img src={bill.electricity.afterImg} alt="electric after" loading="lazy" />
+                        <img
+                          src={bill.electricity.afterImg}
+                          alt="electric after"
+                          loading="lazy"
+                        />
                       </figure>
                     </div>
                   </section>
 
                   <section className="service">
                     <div className="service-head">
-                      <img src="/mcwd-logo.jpeg" alt="MCWD" className="logo" loading="lazy" />
+                      <img
+                        src="/mcwd-logo.jpeg"
+                        alt="MCWD"
+                        className="logo"
+                        loading="lazy"
+                      />
                       <h4>Water</h4>
                     </div>
-                    <p className="meta text-white"><strong>Consumed:</strong> {bill.water.cuM} cu.m</p>
-                    <p className="cost text-white"><strong>Cost:</strong> ₱{fmt(waterBill)}</p>
+                    <p className="meta text-white">
+                      <strong>Consumed:</strong> {bill.water.cuM} cu.m
+                    </p>
+                    <p className="cost text-white">
+                      <strong>Cost:</strong> ₱{fmt(waterBill)}
+                    </p>
 
                     <div className="images">
                       <figure>
                         <figcaption>Before</figcaption>
-                        <img src={bill.water.beforeImg} alt="water before" loading="lazy" />
+                        <img
+                          src={bill.water.beforeImg}
+                          alt="water before"
+                          loading="lazy"
+                        />
                       </figure>
                       <figure>
                         <figcaption>After</figcaption>
-                        <img src={bill.water.afterImg} alt="water after" loading="lazy" />
+                        <img
+                          src={bill.water.afterImg}
+                          alt="water after"
+                          loading="lazy"
+                        />
                       </figure>
                     </div>
                   </section>
 
                   <section className="service last">
                     <h4>Internet</h4>
-                    <p className="cost text-white"><strong>Cost:</strong> ₱{fmt(internetBill)}</p>
+                    <p className="cost text-white">
+                      <strong>Cost:</strong> ₱{fmt(internetBill)}
+                    </p>
                   </section>
 
                   <div className="total-row">
@@ -182,5 +240,3 @@ export default function BillApp() {
     </div>
   );
 }
-
-
